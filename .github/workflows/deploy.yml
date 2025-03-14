@@ -17,30 +17,14 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Debug Node.js Version
-        run: |
-          node --version
-          npm --version
-
       - name: Install Dependencies
         run: |
-          npm install
-          echo "Installed dependencies:"
-          npm list --depth=0
-
-      - name: Debug Project Structure
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Directory contents:"
-          ls -la
+          npm ci
+          npm install -g vite
 
       - name: Build
         run: |
-          echo "Starting build process..."
           npm run build
-          echo "Build completed. Checking dist directory:"
-          ls -la dist
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
